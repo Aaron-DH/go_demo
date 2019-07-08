@@ -2,15 +2,18 @@ package databases
 
 import (
     "database/sql"
-    _ "github.com/go-sql-driver/mysql"
     "log"
+    _ "github.com/go-sql-driver/mysql"
+    "github.com/spf13/viper"
 )
 
 var SqlDB *sql.DB
 
-func init() {
+func Init() {
     var err error
-    SqlDB, err = sql.Open("mysql", "root:R0otAwc10ud@tcp(172.16.2.100:8090)/ailab?charset=utf8")
+    engine := viper.GetString("engine")
+    dburl := viper.GetString("url")
+    SqlDB, err = sql.Open(engine, dburl)
     if err != nil {
         log.Fatal(err.Error())
     }

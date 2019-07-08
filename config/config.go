@@ -5,6 +5,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
+	"go_api_demo/databases"
 )
 
 type Config struct {
@@ -72,6 +73,6 @@ func (c *Config) watchConfig() {
 	})
 }
 
-//func (c *Config) initDB() {
-//	db.Init()
-//}
+func (c *Config) initDB() {
+	databases.Init()
+}

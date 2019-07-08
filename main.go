@@ -6,7 +6,6 @@ import (
 	"go_api_demo/config"
 	"go_api_demo/router"
 
-     	_ "go_api_demo/databases"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/spf13/pflag"
