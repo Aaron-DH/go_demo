@@ -2,7 +2,7 @@ package databases
 
 import (
     "github.com/jinzhu/gorm"
-    "log"
+    "github.com/lexkong/log"
     _ "github.com/go-sql-driver/mysql"
     "github.com/spf13/viper"
 )
@@ -15,7 +15,7 @@ func Init() {
     dburl := viper.GetString("db.url")
     SqlDB, err = gorm.Open(engine, dburl)
     if err != nil {
-        log.Fatal(err.Error())
+        log.Fatal("Open database error", err)
     }
 	SqlDB.SingularTable(true)
 	//defer SqlDB.Close()

@@ -13,6 +13,7 @@ func GetTags(c *gin.Context) {
 	var tags []TbTag
 	if err := db.SqlDB.Find(&tags).Error; err != nil {
 		c.AbortWithStatus(404)
+		log.Error("Query from db error", err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -26,6 +27,7 @@ func UpdateTag(c *gin.Context) {
 
 	log.Infof("Begin update tag: %s", id)
 	if err := db.SqlDB.Where("tag_id = ?", id).First(&tag).Error; err != nil {
+		log.Error("Query from tag with id failed", err)
 		c.JSON(404, "Update failed, Tagid:" + id + " Not Found")
 		return
 	}
@@ -43,6 +45,7 @@ func CreateTag(c *gin.Context) {
 	tag.CreateTime = time.Now()
 
 	if err := db.SqlDB.Create(&tag).Error; err != nil {
+		log.Error("Insert into db failed", err)
 		c.JSON(500, err)
 		return
 	}
