@@ -1,1 +1,1 @@
-# go_api_demo
+# Demo Restful API with go gin

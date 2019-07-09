@@ -6,6 +6,7 @@ import (
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 	"go_api_demo/databases"
+	"go_api_demo/models"
 )
 
 type Config struct {
@@ -27,6 +28,8 @@ func Init(cfg string) error {
 
 	// 监控配置文件变化并热加载程序
 	c.watchConfig()
+
+	c.initDB()
 
 	return nil
 }
@@ -75,4 +78,5 @@ func (c *Config) watchConfig() {
 
 func (c *Config) initDB() {
 	databases.Init()
+	models.Init()
 }

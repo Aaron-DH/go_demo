@@ -14,4 +14,4 @@ log:
   log_backup_count: 7
 db:
   engine: mysql
-  url: root:R0otAwc10ud@tcp(172.16.2.100:8090)/ailab?charset=utf8
+  url: root:R0otAwc10ud@tcp(172.16.2.100:8090)/ailab?charset=utf8&parseTime=true

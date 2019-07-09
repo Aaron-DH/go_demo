@@ -18,7 +18,7 @@ func Load(g *gin.Engine, mws ...gin.HandlerFunc) *gin.Engine {
 
         g.NoRoute(func(c *gin.Context) {
 		c.String(http.StatusNotFound, "API not found.")
-	})
+		})
 
         checkservice := g.Group("/check")
         {
@@ -26,9 +26,11 @@ func Load(g *gin.Engine, mws ...gin.HandlerFunc) *gin.Engine {
         }
 
         tagservice := g.Group("/tag")
-	{
-		tagservice.GET("/tags", tag.GetTags)
-	}
+		{
+			tagservice.GET("/tags", tag.GetTags)
+			tagservice.POST("/tags", tag.CreateTag)
+			tagservice.PUT("tags/:id", tag.UpdateTag)
+		}
 
         return g
 }

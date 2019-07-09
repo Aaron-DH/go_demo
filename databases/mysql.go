@@ -1,25 +1,27 @@
 package databases
 
 import (
-    "database/sql"
+    "github.com/jinzhu/gorm"
     "log"
     _ "github.com/go-sql-driver/mysql"
     "github.com/spf13/viper"
 )
 
-var SqlDB *sql.DB
+var SqlDB *gorm.DB
 
 func Init() {
     var err error
-    engine := viper.GetString("engine")
-    dburl := viper.GetString("url")
-    SqlDB, err = sql.Open(engine, dburl)
+    engine := viper.GetString("db.engine")
+    dburl := viper.GetString("db.url")
+    SqlDB, err = gorm.Open(engine, dburl)
     if err != nil {
         log.Fatal(err.Error())
     }
+	SqlDB.SingularTable(true)
+	//defer SqlDB.Close()
 
-    err = SqlDB.Ping()
-    if err != nil {
-        log.Fatal(err.Error())
-    }
+    //err = SqlDB.Ping()
+    //if err != nil {
+    //    log.Fatal(err.Error())
+    //}
 }

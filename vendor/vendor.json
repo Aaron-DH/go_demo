@@ -122,6 +122,20 @@
 			"revisionTime": "2018-06-17T18:56:44Z"
 		},
 		{
+			"checksumSHA1": "KBZAPkgG/bO26yf2KYKLZPyQw9k=",
+			"origin": "vendor/github.com/jinzhu/gorm",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "fb71b1771f9bf9d4f678276a3ec11f9f38ec87a5",
+			"revisionTime": "2018-06-17T18:56:44Z"
+		},
+		{
+			"checksumSHA1": "VIp1lZm6joWhlNdwhady8u//qRw=",
+			"origin": "vendor/github.com/jinzhu/inflection",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "fb71b1771f9bf9d4f678276a3ec11f9f38ec87a5",
+			"revisionTime": "2018-06-17T18:56:44Z"
+		},
+		{
 			"checksumSHA1": "KQhA4EQp4Ldwj9nJZnEURlE6aQw=",
 			"origin": "vendor/github.com/kr/fs",
 			"path": "github.com/kr/fs",
@@ -246,41 +260,6 @@
 			"path": "github.com/ugorji/go/codec",
 			"revision": "fb71b1771f9bf9d4f678276a3ec11f9f38ec87a5",
 			"revisionTime": "2018-06-17T18:56:44Z"
-		},
-		{
-			"checksumSHA1": "xmt9g47eqLHh1RrAbej12xOCePc=",
-			"path": "goapi/config",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "oiIKcsO6+XmsA7muKRKPO5vTx80=",
-			"path": "goapi/databases",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "8OHGPCleMpTsbREBWxmxAfcjlyc=",
-			"path": "goapi/models",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "ZoTbocL44klOIclW4prsPrLZZ2E=",
-			"path": "goapi/router",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "hMnUgaWavUfVjDXWNmwP0n/HAC8=",
-			"path": "goapi/router/middleware",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "NDURLO77/shLzYwPQd50pFh3mh0=",
-			"path": "goapi/service/check",
-			"revision": ""
-		},
-		{
-			"checksumSHA1": "YoU0Stu4XJzVAsmUreksGNnUFCA=",
-			"path": "goapi/service/tag",
-			"revision": ""
 		},
 		{
 			"checksumSHA1": "C1KKOxFoW7/W/NFNpiXK+boguNo=",
