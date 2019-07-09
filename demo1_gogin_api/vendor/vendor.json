@@ -3,6 +3,41 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "QSMbI+HgO+KqCxjGw/TWkr8kASc=",
+			"path": "demo1_gogin_api/common",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "wJuNskYxQ0WaAGkUACH9Uwqouio=",
+			"path": "demo1_gogin_api/config",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "6pxy0Ax76eDaLoIfs/ud5+R0wUw=",
+			"path": "demo1_gogin_api/databases",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "E0k5lpB/lJv1QV/NwIj134Vl4xQ=",
+			"path": "demo1_gogin_api/models",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "cAFb7IMVE9UcE+SzGFsKHP9ldAM=",
+			"path": "demo1_gogin_api/router",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "R4v70vp4yFhiMwfnhNVZY9hBzMU=",
+			"path": "demo1_gogin_api/router/middleware",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "nX+mGharn43v1fXhOW3E00x2pKM=",
+			"path": "demo1_gogin_api/service",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "x2Km0Qy3WgJJnV19Zv25VwTJcBM=",
 			"origin": "vendor/github.com/fsnotify/fsnotify",
 			"path": "github.com/fsnotify/fsnotify",
@@ -325,5 +360,5 @@
 			"revisionTime": "2018-06-17T18:56:44Z"
 		}
 	],
-	"rootPath": "go_api_demo"
+	"rootPath": "go_demo/demo1_gogin_api"
 }

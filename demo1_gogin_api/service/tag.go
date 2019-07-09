@@ -1,11 +1,11 @@
-package tag
+package service
 
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
-	."go_api_demo/models"
-	db "go_api_demo/databases"
+	."demo1_gogin_api/models"
+	db "demo1_gogin_api/databases"
 	"time"
 )
 

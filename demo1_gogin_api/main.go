@@ -5,8 +5,8 @@ import (
 	"time"
 	"errors"
 
-	"go_api_demo/config"
-	"go_api_demo/router"
+	"demo1_gogin_api/config"
+	"demo1_gogin_api/router"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
