@@ -1,0 +1,80 @@
+basePath: /v1
+definitions:
+  models.UserInfo:
+    properties:
+      create_id:
+        type: integer
+      create_time:
+        type: string
+      is_del:
+        type: integer
+      update_id:
+        type: integer
+      update_time:
+        type: string
+      user_id:
+        type: integer
+      user_mail:
+        type: string
+      user_name:
+        type: string
+      user_passwd:
+        type: string
+      user_status:
+        type: integer
+    type: object
+host: localhost:8080/swagger/index.html
+info:
+  contact:
+    email: 344677472@qq.com
+    name: Aaron
+    url: http://www.swagger.io/support
+  description: apiserver demo
+  license: {}
+  title: Apiserver Example API
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login
+      parameters:
+      - description: 用户名
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: 用户密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"message":"OK","data":{"user_name":"kong","xx":"xx"}}'
+          schema:
+            $ref: '#/definitions/models.UserInfo'
+            type: object
+      summary: Login with username and password
+      tags:
+      - Login
+  /v1/users:
+    get:
+      consumes:
+      - application/json
+      description: Get Users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"message":"OK","data":{"user_name":"kong","xx":"xx"}}'
+          schema:
+            $ref: '#/definitions/models.UserInfo'
+            type: object
+      summary: List all users from database
+      tags:
+      - UserInfo
+swagger: "2.0"

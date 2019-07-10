@@ -18,6 +18,16 @@ var (
 	cfg = pflag.StringP("config", "c", "", "apiserver config file path.")
 )
 
+// @title Apiserver Example API
+// @version 1.0
+// @description apiserver demo
+
+// @contact.name Aaron
+// @contact.url http://www.swagger.io/support
+// @contact.email 344677472@qq.com
+
+// @host localhost:8080/swagger/index.html
+// @BasePath /v1
 func main() {
 	pflag.Parse()
 

@@ -1,0 +1,119 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "apiserver demo",
+        "title": "Apiserver Example API",
+        "contact": {
+            "name": "Aaron",
+            "url": "http://www.swagger.io/support",
+            "email": "344677472@qq.com"
+        },
+        "license": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080/swagger/index.html",
+    "basePath": "/v1",
+    "paths": {
+        "/login": {
+            "post": {
+                "description": "Login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login with username and password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "用户密码",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":0,\"message\":\"OK\",\"data\":{\"user_name\":\"kong\",\"xx\":\"xx\"}}",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/users": {
+            "get": {
+                "description": "Get Users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "UserInfo"
+                ],
+                "summary": "List all users from database",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":0,\"message\":\"OK\",\"data\":{\"user_name\":\"kong\",\"xx\":\"xx\"}}",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserInfo"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.UserInfo": {
+            "type": "object",
+            "properties": {
+                "create_id": {
+                    "type": "integer"
+                },
+                "create_time": {
+                    "type": "string"
+                },
+                "is_del": {
+                    "type": "integer"
+                },
+                "update_id": {
+                    "type": "integer"
+                },
+                "update_time": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "user_mail": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "user_passwd": {
+                    "type": "string"
+                },
+                "user_status": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

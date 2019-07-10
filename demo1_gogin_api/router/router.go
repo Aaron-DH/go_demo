@@ -6,6 +6,9 @@ import (
 
 	"demo1_gogin_api/service"
 	"demo1_gogin_api/router/middleware"
+	_ "demo1_gogin_api/docs"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func Load(g *gin.Engine, mws ...gin.HandlerFunc) *gin.Engine {
@@ -16,25 +19,30 @@ func Load(g *gin.Engine, mws ...gin.HandlerFunc) *gin.Engine {
         g.Use(mws...)
 
         g.NoRoute(func(c *gin.Context) {
-		c.String(http.StatusNotFound, "API not found.")
+			c.String(http.StatusNotFound, "API not found.")
 		})
+
+		g.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+		g.POST("/login", service.Login)
 
         checkservice := g.Group("/check")
         {
                 checkservice.GET("/health", service.HealthCheck)
         }
 
-        tagservice := g.Group("/tag")
+        tagservice := g.Group("/v1/tags")
+		tagservice.Use(middleware.AuthMiddleware())
 		{
-			tagservice.GET("/tags", service.GetTags)
-			tagservice.POST("/tags", service.CreateTag)
-			tagservice.PUT("/tags/:id", service.UpdateTag)
+			tagservice.GET("", service.GetTags)
+			tagservice.POST("", service.CreateTag)
+			tagservice.PUT("/:id", service.UpdateTag)
 		}
 
-		userservice := g.Group("/user")
+		userservice := g.Group("/v1/users")
+		userservice.Use(middleware.AuthMiddleware())
 		{
-			userservice.GET("/users", service.GetUsers)
-			userservice.POST("/login", service.Login)
+			userservice.GET("", service.GetUsers)
 		}
 
         return g
