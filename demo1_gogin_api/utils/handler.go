@@ -1,10 +1,9 @@
 package utils
 
-
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
 	"demo1_gogin_api/errno"
+	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 type Response struct {

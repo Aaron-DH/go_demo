@@ -1,13 +1,16 @@
 package service
 
 import (
+	"demo1_gogin_api/db"
+	"demo1_gogin_api/errno"
+	. "demo1_gogin_api/models"
+	"demo1_gogin_api/redis"
+	"demo1_gogin_api/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
-	db "demo1_gogin_api/databases"
-	"demo1_gogin_api/utils"
-	"demo1_gogin_api/errno"
-	."demo1_gogin_api/models"
+	"github.com/spf13/viper"
+	"time"
 )
 
 type CreateRequest struct {
@@ -39,7 +42,7 @@ func GetUsers(c *gin.Context) {
 // @Produce  json
 // @Param username formData string true "用户名"
 // @Param password formData string true "用户密码"
-// @Success 200 {object} models.UserInfo "{"code":0,"message":"OK","data":{"user_name":"kong","xx":"xx"}}"
+// @Success 200 {object} UserInfo "{"code":0,"message":"OK","data":{"xx":"xx"}}"
 // @Router /login [post]
 func Login(c *gin.Context) {
 	var userreq CreateRequest
@@ -65,5 +68,18 @@ func Login(c *gin.Context) {
 		return
 	}
 
+	token, err := utils.GenShortId()
+	if err != nil {
+		log.Errorf(err, "Generate uuid faied!")
+		utils.SendResponse(c, errno.InternalServerError, nil)
+	}
+	log.Infof("Login with user[%s] success, token is [%s]", userreq.Username, token)
+
+	if err := redis.Set(token, userinfo, time.Minute*time.Duration(viper.GetInt("token_expired"))); err != nil {
+		log.Errorf(err, "Save token to redis failed!")
+		utils.SendResponse(c, errno.InternalServerError, nil)
+	}
+	log.Info("Save userinfo to redis success.")
+	c.Header("X-Auth-Token", token)
 	utils.SendResponse(c, nil, userinfo)
 }

@@ -1,12 +1,13 @@
 package config
 
 import (
-	"strings"
+	"demo1_gogin_api/db"
+	"demo1_gogin_api/models"
+	"demo1_gogin_api/redis"
 	"github.com/fsnotify/fsnotify"
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
-	"demo1_gogin_api/databases"
-	"demo1_gogin_api/models"
+	"strings"
 )
 
 type Config struct {
@@ -29,7 +30,7 @@ func Init(cfg string) error {
 	// 监控配置文件变化并热加载程序
 	c.watchConfig()
 
-	c.initDB()
+	c.initApp()
 
 	return nil
 }
@@ -76,7 +77,8 @@ func (c *Config) watchConfig() {
 	})
 }
 
-func (c *Config) initDB() {
-	databases.Init()
+func (c *Config) initApp() {
+	db.Init()
 	models.Init()
+	redis.Init()
 }

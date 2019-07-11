@@ -1,23 +1,23 @@
 package models
 
 import (
-	db "demo1_gogin_api/databases"
+	"demo1_gogin_api/db"
 	"time"
 )
 
 type CommonField struct {
-	CreateID int `json:"create_id"`
+	CreateID   int       `json:"create_id"`
 	CreateTime time.Time `json:"create_time"`
-	UpdateID int `json:"update_id"`
+	UpdateID   int       `json:"update_id"`
 	UpdateTime time.Time `json:"update_time"`
-	IsDel int `json:"is_del"`
+	IsDel      int       `json:"is_del"`
 }
 
 type TbTag struct {
-	TagID int `json:"tag_id"`
-	TagName string `json:"tag_name"`
-	GroupID int `json:"group_id"`
-	CreateID int `json:"create_id"`
+	TagID      int       `json:"tag_id"`
+	TagName    string    `json:"tag_name"`
+	GroupID    int       `json:"group_id"`
+	CreateID   int       `json:"create_id"`
 	CreateTime time.Time `json:"create_time"`
 }
 
@@ -30,11 +30,11 @@ type TbTag struct {
 //}
 
 type UserInfo struct {
-	UserID int `json:"user_id"`
-	UserName string `json:"user_name"`
+	UserID     int    `json:"user_id"`
+	UserName   string `json:"user_name"`
 	UserPasswd string `json:"user_passwd"`
-	UserStatus int `json:"user_status"`
-	UserMail string `json:"user_mail"`
+	UserStatus int    `json:"user_status"`
+	UserMail   string `json:"user_mail"`
 	CommonField
 }
 

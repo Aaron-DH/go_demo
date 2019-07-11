@@ -14,9 +14,9 @@ func (err Errno) Error() string {
 }
 
 type Err struct {
-	Code	int
-	Message	string
-	Err		error
+	Code    int
+	Message string
+	Err     error
 }
 
 func New(errno *Errno, err error) *Err {
@@ -43,11 +43,11 @@ func DecodeErr(err error) (int, string) {
 	}
 
 	switch typed := err.(type) {
-		case *Err:
-			return typed.Code, typed.Message
-		case *Errno:
-			return typed.Code, typed.Message
-		default:
+	case *Err:
+		return typed.Code, typed.Message
+	case *Errno:
+		return typed.Code, typed.Message
+	default:
 	}
 
 	return InternalServerError.Code, err.Error()

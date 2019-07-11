@@ -1,9 +1,9 @@
 package main
 
 import (
+	"errors"
 	"net/http"
 	"time"
-	"errors"
 
 	"demo1_gogin_api/config"
 	"demo1_gogin_api/router"
