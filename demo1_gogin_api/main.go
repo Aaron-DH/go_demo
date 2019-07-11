@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"demo1_gogin_api/config"
+	"demo1_gogin_api/log"
 	"demo1_gogin_api/router"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 )
@@ -50,13 +50,13 @@ func main() {
 	// Ping the server to make sure the router is working.
 	go func() {
 		if err := pingServer(); err != nil {
-			log.Fatal("The router has no response, or it might took too long to start up.", err)
+			log.RunLog.Critical("The router has no response, or it might took too long to start up.", err)
 		}
-		log.Info("The router has been deployed successfully.")
+		log.RunLog.Info("The API Server has been deployed successfully.")
 	}()
 
-	log.Infof("Start to listen httpserver on: %s", viper.GetString("addr"))
-	log.Info(http.ListenAndServe(viper.GetString("addr"), g).Error())
+	log.RunLog.Info("Start to listen httpserver on: %s", viper.GetString("addr"))
+	log.RunLog.Info(http.ListenAndServe(viper.GetString("addr"), g).Error())
 }
 
 func pingServer() error {
@@ -65,7 +65,7 @@ func pingServer() error {
 		if err == nil && resp.StatusCode == 200 {
 			return nil
 		}
-		log.Info("Waiting for the router, retry in 1 second.")
+		log.RunLog.Info("Waiting for the router, retry in 1 second.")
 		time.Sleep(time.Second)
 	}
 	return errors.New("Cannot connect to the router.")

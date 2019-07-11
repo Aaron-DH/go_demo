@@ -1,9 +1,9 @@
 package db
 
 import (
+	"demo1_gogin_api/log"
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 )
 
@@ -18,7 +18,9 @@ func OpenMySQLDB() *gorm.DB {
 
 	db, err := gorm.Open("mysql", config)
 	if err != nil {
-		log.Errorf(err, "Database connection failed. Database name: %s", viper.GetString("db.name"))
+		log.RunLog.Error("Database connection failed. Database name: %s", viper.GetString("db.name"))
+	} else {
+		log.RunLog.Info("Init mysql database success.")
 	}
 
 	db.SingularTable(true)

@@ -4,3 +4,4 @@
 - 2.Use `viper` and `pflag` to read from config
 - 3.Use `grom` to connect to database
 - 4.Use `go-redis` to connect to redis
+- 5.Use `log4go` to record loginfo

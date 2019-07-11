@@ -17,7 +17,7 @@ db:
     engine: mysql
     username: root
     password: R0otAwc10ud
-    addr: 172.16.2.100:8090
+    addr: 172.16.2.100:8091
     name: ailab
 redis:
     addr: 172.16.2.100:30771

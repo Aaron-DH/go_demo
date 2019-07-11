@@ -2,9 +2,9 @@ package service
 
 import (
 	"demo1_gogin_api/db"
+	"demo1_gogin_api/log"
 	. "demo1_gogin_api/models"
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log"
 	"net/http"
 	"time"
 )
@@ -13,7 +13,7 @@ func GetTags(c *gin.Context) {
 	var tags []TbTag
 	if err := db.SqlDB.Find(&tags).Error; err != nil {
 		c.AbortWithStatus(404)
-		log.Error("Query from db error", err)
+		log.UserLog.Error("Query tags from db error.", err)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -25,9 +25,9 @@ func UpdateTag(c *gin.Context) {
 	var tag TbTag
 	id := c.Params.ByName("id")
 
-	log.Infof("Begin update tag: %s", id)
+	log.UserLog.Info("Begin update tag: %s", id)
 	if err := db.SqlDB.Where("tag_id = ?", id).First(&tag).Error; err != nil {
-		log.Error("Query from tag with id failed", err)
+		log.UserLog.Error("Query tag from db with id failed.", err)
 		c.JSON(404, "Update failed, Tagid:"+id+" Not Found")
 		return
 	}
@@ -45,7 +45,7 @@ func CreateTag(c *gin.Context) {
 	tag.CreateTime = time.Now()
 
 	if err := db.SqlDB.Create(&tag).Error; err != nil {
-		log.Error("Insert into db failed", err)
+		log.UserLog.Error("Insert taginfo to db failed.", err)
 		c.JSON(500, err)
 		return
 	}

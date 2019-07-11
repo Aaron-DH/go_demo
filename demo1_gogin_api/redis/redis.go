@@ -1,9 +1,9 @@
 package redis
 
 import (
+	"demo1_gogin_api/log"
 	"encoding/json"
 	"github.com/go-redis/redis"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 	"time"
 )
@@ -22,7 +22,7 @@ func Init() {
 
 	_, err := client.Ping().Result()
 	if err != nil {
-		log.Errorf(err, "Connect to redis error!")
+		log.RunLog.Error("Connect to redis error.", err)
 	}
 }
 

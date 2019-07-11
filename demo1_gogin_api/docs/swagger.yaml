@@ -54,9 +54,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"code":0,"message":"OK","data":{"user_name":"kong","xx":"xx"}}'
+          description: '{"code":0,"message":"OK","data":{"xx":"xx"}}'
           schema:
-            $ref: '#/definitions/models.UserInfo'
+            $ref: '#/definitions/UserInfo'
             type: object
       summary: Login with username and password
       tags:

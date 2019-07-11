@@ -1,0 +1,26 @@
+{
+    "console": {
+        "enable": true,
+        "level": "FINE"
+    },  
+    "files": [
+        {
+            "enable": true,
+            "level": "DEBUG",
+            "filename":"/var/log/apiserver/run.log",
+            "category": "RUN",
+            "pattern": "[%D %T] [%C] [%L] (%S) %M"
+        },
+        { 
+            "enable": true,
+            "level": "DEBUG",
+            "filename":"/var/log/apiserver/user.log",
+            "category": "USER",
+            "pattern": "[%D %T] [%C] [%L] (%S) %M",
+            "rotate": true,
+            "maxsize": "500M",
+            "maxlines": "10K",
+            "daily": true
+        }
+    ]
+}

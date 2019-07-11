@@ -45,10 +45,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"code\":0,\"message\":\"OK\",\"data\":{\"user_name\":\"kong\",\"xx\":\"xx\"}}",
+                        "description": "{\"code\":0,\"message\":\"OK\",\"data\":{\"xx\":\"xx\"}}",
                         "schema": {
                             "type": "object",
-                            "$ref": "#/definitions/models.UserInfo"
+                            "$ref": "#/definitions/UserInfo"
                         }
                     }
                 }

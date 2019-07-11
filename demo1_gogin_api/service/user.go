@@ -3,12 +3,12 @@ package service
 import (
 	"demo1_gogin_api/db"
 	"demo1_gogin_api/errno"
+	"demo1_gogin_api/log"
 	. "demo1_gogin_api/models"
 	"demo1_gogin_api/redis"
 	"demo1_gogin_api/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 	"time"
 )
@@ -28,7 +28,7 @@ type CreateRequest struct {
 func GetUsers(c *gin.Context) {
 	var users []UserInfo
 	if err := db.SqlDB.Find(&users).Error; err != nil {
-		log.Error("Query from db error", err)
+		log.UserLog.Error("Query from db error", err)
 		utils.SendResponse(c, errno.DBError, nil)
 	}
 
@@ -58,7 +58,7 @@ func Login(c *gin.Context) {
 	}
 
 	if err := db.SqlDB.Where("user_name = ?", userreq.Username).First(&userinfo).Error; err != nil {
-		log.Error("Query from userinfo with Username failed", err)
+		log.UserLog.Error("Query from userinfo with Username failed", err)
 		utils.SendResponse(c, errno.New(errno.ErrUserNotFound, fmt.Errorf("username can not found")), nil)
 		return
 	}
@@ -70,16 +70,16 @@ func Login(c *gin.Context) {
 
 	token, err := utils.GenShortId()
 	if err != nil {
-		log.Errorf(err, "Generate uuid faied!")
+		log.UserLog.Error("Generate uuid faied!", err)
 		utils.SendResponse(c, errno.InternalServerError, nil)
 	}
-	log.Infof("Login with user[%s] success, token is [%s]", userreq.Username, token)
+	log.UserLog.Info("Login with user[%s] success, token is [%s]", userreq.Username, token)
 
 	if err := redis.Set(token, userinfo, time.Minute*time.Duration(viper.GetInt("token_expired"))); err != nil {
-		log.Errorf(err, "Save token to redis failed!")
+		log.UserLog.Error("Save token to redis failed!", err)
 		utils.SendResponse(c, errno.InternalServerError, nil)
 	}
-	log.Info("Save userinfo to redis success.")
+	log.UserLog.Info("Save userinfo to redis success.")
 	c.Header("X-Auth-Token", token)
 	utils.SendResponse(c, nil, userinfo)
 }
