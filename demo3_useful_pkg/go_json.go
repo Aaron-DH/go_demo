@@ -68,17 +68,17 @@ func testStruct2Json() {
 func testJson2Struct() {
 	var data = `
 	    {
-	        "user_id":1,
-	        "user_name":"aaron",
-	        "is_student": false,
-	        "roles": [
-	            {
-	                "role_id": 1,
-		            "role_name": "admin"
-	            },
-		        {
-		            "role_id": 2,
-		            "role_name": "user"
+			"user_id":1,
+			"user_name":"aaron",
+			"is_student": false,
+			"roles": [
+				{
+					"role_id": 1,
+					"role_name": "admin"
+				},
+				{
+					"role_id": 2,
+					"role_name": "user"
 				}
 			]
 		}
