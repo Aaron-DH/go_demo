@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"time"
 )
 
@@ -48,7 +48,7 @@ func testCreateTable() {
 	}
 	defer db.Close()
 
-	db.LogMode(true)
+	// db.LogMode(true)
 
 	fmt.Println("Init.")
 	ret := db.HasTable(&Product{})
@@ -101,7 +101,7 @@ func testQueryData() {
 		return
 	}
 	db.SingularTable(true)
-	db.LogMode(true)
+	// db.LogMode(true)
 
 	// 表和数据已经手动创建好
 	// user_id	user_name	age role 	birthday
@@ -221,6 +221,24 @@ func testQueryData() {
 		fmt.Println("-> result: username, age", user_name1, age1)
 	}
 	*/
+
+	// Transaction
+	tx := db.Begin()
+	user_add1 := User{UserID: 20, UserName: "Test1", Age: 21, Role: "admin", Birthday: time.Now()}
+	user_add2 := User{UserID: 20, UserName: "Test2", Age: 21, Role: "admin", Birthday: time.Now()}
+
+	if err1 := tx.Create(&user_add1).Error; err1 != nil {
+		fmt.Println("Create user1 error", err1)
+		tx.Rollback()
+		return
+	}
+	// user_add2 will create failed since userid duplicate then rollback that means user_add1 will not created
+	if err2 := tx.Create(&user_add2).Error; err2 != nil {
+		fmt.Println("Create user2 error", err2)
+		tx.Rollback()
+		return
+	}
+	tx.Commit()
 }
 
 func main() {
