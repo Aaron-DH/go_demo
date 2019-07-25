@@ -16,11 +16,11 @@ log:
 db:
     engine: mysql
     username: root
-    password: R0otAwc10ud
-    addr: 172.16.2.100:8091
-    name: ailab
+    password: password
+    addr: 127.0.0.1:3306
+    name: test
 redis:
-    addr: 172.16.2.100:30771
+    addr: 127.0.0.1:6379
     password: 
     db: 0
     poolsize: 10
